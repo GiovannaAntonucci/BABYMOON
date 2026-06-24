@@ -1,0 +1,441 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E CORES
+   ========================================================================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #2a3b4c; /* O azul-escuro de fundo do seu layout */
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. BANNER PRINCIPAL (HERO)
+   ========================================================================== */
+
+   .hero-banner {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(rgba(42, 59, 76, 0.4), rgba(42, 59, 76, 0.7)), url('imagens/banner.jpeg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Garante que o texto quebre bonito se a tela for menor */
+}
+
+/* Texto de cima: "FOTOGRAFIA DE PARTO" */
+.hero-subtitle-top {
+    font-size: 14pt; /* Aumentado de 11pt para 14pt */
+    letter-spacing: 6px; /* Aumentou o espaçamento entre as letras para dar elegância */
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: #f3cbd3; 
+}
+
+/* Título Principal: "BABY MOON" */
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64pt; /* Aumentado drasticamente de 38pt para 64pt para dar o destaque do layout */
+    font-weight: 400;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    color: #f3cbd3;
+    line-height: 1.1; /* Ajusta a proximidade caso quebre em duas linhas */
+}
+
+/* Texto de baixo: "Ana Paula Antonucci" */
+.hero-subtitle-bottom {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24pt; /* Aumentado de 16pt para 24pt */
+    font-style: italic;
+    margin-bottom: 50px; /* Cria um espaço elegante antes do botão */
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Botões elegantes */
+.btn-hero, .btn-open-form {
+    background: transparent;
+    border: 1px solid #f3cbd3;
+    color: #ffffff;
+    padding: 12px 35px;
+    font-size: 10pt;
+    border-radius: 30px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: #f3cbd3;
+    color: #2a3b4c;
+}
+
+/* ==========================================================================
+   3. JANELA FLUTUANTE (MODAL DO FORMULÁRIO - IMAGEM 2.PNG)
+   ========================================================================== */
+/* Fundo escurecido atrás do formulário */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 30, 40, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    
+    /* INICIAR OCULTO: Essas duas linhas fazem o formulário sumir no início */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Classe que o JavaScript vai adicionar para mostrar o formulário */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Container do formulário baseado na Imagem 2.png */
+.modal-container {
+    background-color: #2a3b4c;
+    width: 90%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto; /* Permite rolar o formulário se a tela for pequena */
+    padding: 40px 30px;
+    border: 2px solid #f3cbd3;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Botão X para fechar */
+.btn-close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #f3cbd3;
+    font-size: 24pt;
+    cursor: pointer;
+}
+
+.form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20pt;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Estrutura dos campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 10pt;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Caixas de texto */
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    background-color: #212e3b; /* Tom ligeiramente mais escuro para o fundo dos inputs */
+    border: 1px solid #3d5368;
+    border-radius: 6px;
+    padding: 12px;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10pt;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #f3cbd3;
+}
+
+/* Opções de Seleção (Maternidades e Vias) */
+.radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-button {
+    background-color: #384d61; /* Tom azul-acinzentado dos botões da imagem 2 */
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 9.5pt;
+    transition: background-color 0.2s;
+}
+
+.radio-button:hover {
+    background-color: #435b73;
+}
+
+.radio-button input {
+    accent-color: #f3cbd3; /* Cor da bolinha de seleção */
+}
+
+/* Botão Enviar */
+.btn-submit {
+    width: 100%;
+    background-color: #f3cbd3; /* Rosa do botão Enviar */
+    color: #2a3b4c;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #e2b7bf;
+}
+
+.form-footer-text {
+    font-size: 7.5pt;
+    text-align: center;
+    color: #a0b2c6;
+    margin-top: 15px;
+}
+
+/* ==========================================================================
+   4. ESTRUTURA DAS SEÇÕES DE FOTOS (PORTFÓLIO, RELATOS, FAMÍLIA)
+   ========================================================================== */
+   .photo-section {
+    padding: 30px 8% 10px 8%; /* Diminui drasticamente o espaço de baixo (10px) */
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26pt;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #f3cbd3;
+    margin-bottom: 40px;
+}
+
+/* Criando o alinhamento em 3 colunas */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Cada bloco de foto + texto */
+.photo-card {
+    text-align: left;
+}
+
+/* Onde a foto vai aparecer - AGORA TODAS FICAM COMPRIDAS IGUAIS */
+.image-holder {
+    width: 100%;
+    height: 450px; /* Deixei a altura padrão alta para TODAS as seções (Portfólio, Relatos e Família) */
+    background-color: #1e2b37;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Mantemos a classe aqui apenas por segurança para não quebrar o HTML */
+.long-img {
+    height: 450px; 
+}
+
+/* Legendas das fotos */
+.photo-desc {
+    font-size: 9.5pt;
+    line-height: 1.4;
+    color: #e0e0e0;
+    font-weight: 300;
+}
+
+.photo-desc em {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11.5pt;
+    color: #f3cbd3;
+    font-weight: 600;
+}
+/* ==========================================================================
+   5. SEÇÃO SOBRE
+   ========================================================================== */
+   .about-section {
+    padding: 20px 10% 50px 10%; /* Deixamos apenas 20px de espaço no topo */
+    text-align: center;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 1.2fr; /* Divide em Foto, Texto, Foto */
+    gap: 30px;
+    align-items: center;
+    text-align: left;
+}
+
+.about-photo {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.about-text {
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   6. RODAPÉ (ENTRE EM CONTATO) - SOLUÇÃO ABSOLUTA ANTI-CORTE
+   ========================================================================= */
+   .footer-contact {
+    min-height: 55vh;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative; /* Essencial para alinhar a imagem e o texto */
+    overflow: hidden; /* Corta qualquer coisa que tente passar da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 50px 0;
+    background-color: #151e27;
+}
+
+/* Força a imagem a ser o fundo real ocupando 100% da largura da tela */
+/* Força a imagem a ser o fundo real ocupando um pouco mais de 100% para eliminar microbordas */
+.footer-bg-img {
+    position: absolute;
+    top: -2%;  /* Empurra 1% para cima */
+    left: -2%; /* Empurra 1% para a esquerda */
+    width: 104% !important;  /* Deixa 2% maior que a tela na largura */
+    height: 104% !important; /* Deixa 2% maior que a tela na altura */
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Filtro escuro por cima da imagem para dar leitura ao texto */
+.footer-contact::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(21, 30, 39, 0.75), rgba(21, 30, 39, 0.85));
+    z-index: 2;
+}
+
+/* Mantendo os elementos centralizados, próximos e na frente do fundo */
+.footer-overlay-content {
+    position: relative;
+    z-index: 3; /* Joga o texto para a frente da imagem e do filtro escuro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    width: 100%;
+}
+
+.footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32pt;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Botão do Rodapé */
+.btn-open-form-footer {
+    background-color: transparent;
+    border: 1px solid #f3cbd3;
+    color: #ffffff;
+    padding: 12px 35px;
+    font-size: 10pt;
+    border-radius: 20px;
+    cursor: pointer;
+    
+    /* Estado inicial para animação */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.3s, color 0.3s;
+}
+
+.btn-open-form-footer.animated-appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-open-form-footer:hover {
+    background-color: #f3cbd3;
+    color: #1e2b37;
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE (PARA CELULAR)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .photo-grid, .about-container {
+        grid-template-columns: 1fr; /* No celular vira uma única coluna pra não esmagar */
+        gap: 40px;
+    }
+    
+    .about-container {
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 38pt; /* No celular ele reduz para não estourar a tela */
+    }
+    .hero-subtitle-bottom {
+        font-size: 18pt;
+    }
+}
