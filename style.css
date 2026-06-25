@@ -7,6 +7,11 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* Faz a página deslizar suavemente ao clicar nos links */
+    scroll-padding-top: 80px; /* Evita que a Navbar fixa cubra o título da seção quando ela chegar no topo */
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #2a3b4c; /* O azul-escuro de fundo do seu layout */
@@ -15,13 +20,12 @@ body {
 }
 
 /* ==========================================================================
-   2. BANNER PRINCIPAL (HERO)
-   ========================================================================== */
-
+   2. BANNER PRINCIPAL (HERO) - TEXTOS AMPLIADOS E BOTÃO ORIGINAL MAIS ABAIXO
+   ========================================================================= */
    .hero-banner {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(rgba(42, 59, 76, 0.4), rgba(42, 59, 76, 0.7)), url('imagens/banner.jpeg') no-repeat center center;
+    background: linear-gradient(rgba(42, 59, 76, 0.3), rgba(42, 59, 76, 0.6)), url('imagens/banner.jpeg') no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -30,52 +34,67 @@ body {
 }
 
 .hero-content {
-    padding: 20px;
+    padding: 40px 20px;
     width: 100%;
-    max-width: 800px; /* Garante que o texto quebre bonito se a tela for menor */
+    max-width: 1200px;
+    height: 85vh; /* Aumentamos um pouco a altura interna do container */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mantém os textos no topo e o botão no rodapé */
+    align-items: center;
+}
+
+/* Container que agrupa os textos no topo */
+.hero-text-group {
+    margin-top: 20px;
 }
 
 /* Texto de cima: "FOTOGRAFIA DE PARTO" */
 .hero-subtitle-top {
-    font-size: 14pt; /* Aumentado de 11pt para 14pt */
-    letter-spacing: 6px; /* Aumentou o espaçamento entre as letras para dar elegância */
+    font-size: 18pt; 
+    letter-spacing: 8px; 
     font-weight: 400;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     color: #f3cbd3; 
 }
 
 /* Título Principal: "BABY MOON" */
 .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 64pt; /* Aumentado drasticamente de 38pt para 64pt para dar o destaque do layout */
+    font-size: 95pt; 
     font-weight: 400;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
+    letter-spacing: 6px;
+    margin-bottom: 0px;
     color: #f3cbd3;
-    line-height: 1.1; /* Ajusta a proximidade caso quebre em duas linhas */
+    line-height: 1.0;
 }
 
 /* Texto de baixo: "Ana Paula Antonucci" */
 .hero-subtitle-bottom {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24pt; /* Aumentado de 16pt para 24pt */
+    font-size: 32pt; 
     font-style: italic;
-    margin-bottom: 50px; /* Cria um espaço elegante antes do botão */
     font-weight: 300;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-top: 5px;
 }
 
-/* Botões elegantes */
+/* VOLTOU AO DESIGN ORIGINAL: Botões elegantes (com tamanho ampliado) */
 .btn-hero, .btn-open-form {
     background: transparent;
-    border: 1px solid #f3cbd3;
+    border: 1px solid #f3cbd3; /* Borda fina original */
     color: #ffffff;
-    padding: 12px 35px;
-    font-size: 10pt;
-    border-radius: 30px;
+    padding: 16px 50px; /* Aumentado aqui (de 12px 35px para 16px 50px) */
+    font-size: 11pt; /* Aumentamos um pontinho na fonte para acompanhar o botão */
+    border-radius: 30px; /* Mantém o arredondamento original */
     cursor: pointer;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px; /* Deixa o espaçamento das letras um pouquinho mais elegante */
     transition: all 0.3s ease;
+}
+
+.btn-hero {
+    margin-bottom: 15px; /* Mantém ele bem posicionado na parte de baixo */
 }
 
 .btn-hero:hover {
@@ -328,6 +347,27 @@ body {
 .about-text p {
     margin-bottom: 15px;
 }
+/* --- CONFIGURAÇÃO DAS ANIMAÇÕES DE ROLAGEM --- */
+
+/* Estado inicial da foto da esquerda (invisível e empurrada para a esquerda) */
+.about-photo.about-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Estado inicial da foto da direita (invisível e empurrada para a direita) */
+.about-photo.about-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Classe que o JavaScript vai aplicar dinamicamente ao rolar a página */
+.about-photo.animated-fade-in {
+    opacity: 1;
+    transform: translateX(0);
+}
 
 /* ==========================================================================
    6. RODAPÉ (ENTRE EM CONTATO) - SOLUÇÃO ABSOLUTA ANTI-CORTE
@@ -438,4 +478,225 @@ body {
     .hero-subtitle-bottom {
         font-size: 18pt;
     }
+}
+
+/* ==========================================================================
+   VARIAÇÃO 1: PORTFÓLIO (Estilo Padrão e Alinhado)
+   ========================================================================= */
+   .photo-section:nth-of-type(2) .photo-card .image-holder {
+    height: 350px;
+    border-radius: 12px; /* Bordas levemente arredondadas, bem clean */
+    transition: transform 0.3s ease;
+}
+
+/* Efeito simples de aproximação ao passar o mouse */
+.photo-section:nth-of-type(2) .photo-card:hover .image-holder {
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   VARIAÇÃO 2: RELATOS (Efeito Foto em Destaque)
+   ========================================================================= */
+/* Deixa todos os cartões de relatos inicialmente menores e mais transparentes */
+.photo-section:nth-of-type(3) .photo-card {
+    opacity: 0.5;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* O cartão ganha 100% de cor e tamanho normal quando ganha foco */
+.photo-section:nth-of-type(3) .photo-card:hover {
+    opacity: 1;
+    transform: scale(1.02); /* Cresce suavemente para destacar o texto */
+}
+
+.photo-section:nth-of-type(3) .photo-card .image-holder {
+    border-radius: 20px; /* Bordas um pouco mais suaves */
+}
+
+/* ==========================================================================
+   VARIAÇÃO 3: FAMÍLIA (Mural de Memórias Alternado)
+   ========================================================================= */
+/* Alinha o container verticalmente para o topo para o efeito funcionar */
+.photo-section:nth-of-type(4) .portfolio-carousel {
+    align-items: flex-start; 
+    padding-top: 20px;
+}
+
+/* FOTOS ÍMPARES (1ª, 3ª, 5ª...): Mais compridas */
+.photo-section:nth-of-type(4) .photo-card:nth-child(odd) .image-holder {
+    height: 400px; 
+    border-radius: 40px; /* Cantos bem arredondados e orgânicos */
+}
+
+/* FOTOS PARES (2ª, 4ª, 6ª...): Mais curtas e empurradas para baixo */
+.photo-section:nth-of-type(4) .photo-card:nth-child(even) .image-holder {
+    height: 310px; 
+    border-radius: 25px;
+}
+
+.photo-section:nth-of-type(4) .photo-card:nth-child(even) {
+    margin-top: 45px; /* Cria o efeito "sobe e desce" do varal de fotos */
+}
+
+/* ==========================================================================
+   CORREÇÃO FORÇADA DO CARROSSEL (RESOLVE A QUEBRA DE LINHA)
+   ========================================================================= */
+
+/* 1. O Container precisa esconder o que passa da tela e permitir rolar lateralmente */
+.carousel-container {
+    width: 100%;
+    overflow-x: auto !important; /* Ativa a rolagem de lado */
+    overflow-y: hidden !important; /* Esconde qualquer sobra para baixo */
+    display: block;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Suaviza no celular */
+}
+
+/* 2. O Grid precisa virar uma LINHA ÚNICA e INFINITA (Não pode quebrar linha) */
+.portfolio-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* ISSO IMPEDE AS FOTOS DE IREM PARA BAIXO */
+    gap: 30px !important; /* Espaço entre as fotos */
+    padding: 10px 40px !important;
+    width: max-content !important; /* Força o bloco a ter o tamanho somado de todas as fotos */
+}
+
+/* 3. Garante que cada cartão de foto mantenha seu tamanho fixo sem esmagar */
+.portfolio-carousel .photo-card {
+    flex: 0 0 325px !important; /* Define 325px fixos para cada foto */
+    margin-bottom: 0 !important;
+}
+
+/* 4. Estilização da barra de rolagem fininha para não ficar feia */
+.carousel-container::-webkit-scrollbar {
+    height: 6px;
+}
+.carousel-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+.carousel-container::-webkit-scrollbar-thumb {
+    background: #f3cbd3;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   EFEITO ESFUMAÇADO INTELIGENTE (APARECE APENAS AO TOCAR NAS BORDAS)
+   ========================================================================= */
+
+   .carousel-container {
+    position: relative;
+    width: 100%;
+    /* Transição suave para a sombra não surgir do nada */
+    transition: -webkit-mask-image 0.3s ease, mask-image 0.3s ease; 
+}
+
+/* 1. Estado Inicial: Sem sombras nas pontas */
+.carousel-container {
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 100%);
+    mask-image: linear-gradient(to right, black 0%, black 100%);
+}
+
+/* 2. Quando precisa de sombra APENAS na esquerda (4% de largura) */
+.carousel-container.sombra-esquerda {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 100%);
+}
+
+/* 3. Quando precisa de sombra APENAS na direita (4% de largura) */
+.carousel-container.sombra-direita {
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 96%, transparent 100%);
+    mask-image: linear-gradient(to right, black 0%, black 96%, transparent 100%);
+}
+
+/* 4. Quando precisa de sombra nas DUAS pontas ao mesmo tempo */
+.carousel-container.sombra-esquerda.sombra-direita {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+/* ==========================================================================
+   MENU DE NAVEGAÇÃO (NAVBAR) - ESTILO MINIMALISTA COM ANIMAÇÃO
+   ========================================================================= */
+   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2a3b4c; /* Cor de fundo idêntica ao layout */
+    z-index: 1000;
+    padding: 20px 0; /* Um pouco mais de respiro vertical */
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px; /* Alinha bem com as extremidades do seu site */
+}
+
+/* Logo Clicável */
+.nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20pt;
+    font-weight: 500;
+    color: #f3cbd3; 
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover {
+    opacity: 0.8;
+}
+
+/* Estrutura do Menu Moderno */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Espaço elegante entre os textos */
+    margin: 0;
+    padding: 0;
+}
+
+/* Links em formato de texto puro */
+.nav-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7); /* Branco levemente transparente para os itens comuns */
+    font-size: 11pt;
+    font-weight: 400;
+    padding: 5px 0;
+    position: relative; /* Necessário para a animação da linha */
+    transition: color 0.3s ease;
+}
+
+/* Link Ativo (Início) ou quando passa o mouse por cima */
+.nav-link:hover,
+.nav-link.active {
+    color: #f3cbd3; /* Acende no tom de rosa do layout */
+}
+
+/* ========================================== */
+/* ANIMAÇÃO DA LINHA SURGINDO EMBAIXO (HOVER) */
+/* ========================================== */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Começa invisível/sem largura */
+    height: 1px; /* Linha bem fina e minimalista */
+    background-color: #f3cbd3;
+    transition: width 0.3s ease; /* Cria o efeito da linha expandindo */
+}
+
+/* Quando passa o mouse ou o link está ativo, a linha expande 100% */
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
 }
