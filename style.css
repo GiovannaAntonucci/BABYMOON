@@ -460,27 +460,6 @@ body {
 }
 
 /* ==========================================================================
-   7. RESPONSIVIDADE (PARA CELULAR)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .photo-grid, .about-container {
-        grid-template-columns: 1fr; /* No celular vira uma única coluna pra não esmagar */
-        gap: 40px;
-    }
-    
-    .about-container {
-        text-align: center;
-    }
-
-    .hero-title {
-        font-size: 38pt; /* No celular ele reduz para não estourar a tela */
-    }
-    .hero-subtitle-bottom {
-        font-size: 18pt;
-    }
-}
-
-/* ==========================================================================
    VARIAÇÃO 1: PORTFÓLIO (Estilo Padrão e Alinhado)
    ========================================================================= */
    .photo-section:nth-of-type(2) .photo-card .image-holder {
@@ -700,3 +679,58 @@ body {
 .nav-link.active::after {
     width: 100%;
 }
+
+/* ==========================================================================
+   RESPONSIVIDADE (PARA CELULAR)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Ajustes no Menu de Navegação Superior (Navbar) */
+    .nav-container {
+        padding: 0 20px; /* Reduz o recuo nas bordas da tela */
+    }
+
+    .nav-logo {
+        font-size: 16pt; /* Diminui um pouco a logo para não ocupar espaço demais */
+        letter-spacing: 1px;
+    }
+
+    .nav-menu {
+        gap: 15px; /* Reduz o espaço entre os botões para caberem em uma linha só */
+    }
+
+    .nav-link {
+        font-size: 9pt; /* Diminui a letra dos links para não quebrar linha no celular */
+    }
+
+    /* 2. Ajustes nos Títulos das Seções */
+    .section-title {
+        font-size: 18pt; /* Deixa os títulos das seções proporcionais à tela do celular */
+        margin-bottom: 20px;
+    }
+
+    /* 3. Ajustes no Container do Carrossel */
+    .carousel-container {
+        padding: 0 10px; /* Margem sutil para as fotos não colarem 100% na tela */
+        
+        /* Ajusta o efeito esfumaçado para 6% no celular, dando mais área útil para ver as fotos */
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+
+    /* 4. O SEGREDO: Redimensionar as fotos para que caiba mais de uma na tela do celular */
+    .photo-card {
+        flex: 0 0 75%; /* Cada foto vai ocupar 75% da largura da tela do celular */
+        max-width: 75%;
+    }
+
+    /* Ajusta a altura das imagens dentro do segurador (image-holder) */
+    .image-holder {
+        height: 350px; /* Uma altura vertical excelente para telas de celulares */
+    }
+
+    .photo-desc {
+        font-size: 9pt; /* Diminui um pouco a legenda embaixo da foto */
+    }
+}
+
